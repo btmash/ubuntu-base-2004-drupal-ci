@@ -1,4 +1,6 @@
 # syntax=docker/dockerfile:1
+LABEL com.btmash.build-date="2024-06-11"
+
 FROM ubuntu:20.04
 
 #stop asking geographic area while building image |  ¿apt-utils?  ¿unzip?
@@ -6,8 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y wget git
-
+RUN apt-get install -y wget git unzip
 
 RUN apt-get install -y apt-utils
 
