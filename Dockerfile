@@ -51,4 +51,13 @@ RUN chmod 0755 composer.phar && mv composer.phar /usr/local/bin/composer
 RUN apt-get -y clean && apt-get -y autoremove
 
 ##### SWITCH TO NON-ROOT USER #####
-USER ddev
+RUN mkdir -p /opt/atlassian/bitbucketci/agent/build \
+    && sed -i '/[ -z \"PS1\" ] && return/a\\ncase $- in\n*i*) ;;\n*) return;;\nesac' /root/.bashrc \
+    && useradd --create-home --shell /bin/bash --uid 1000 pipelines
+RUN usermod -aG sudo pipelines
+RUN chown -R pipelines:pipelines /opt/atlassian/bitbucketci/agent/build
+
+USER pipelines
+RUN ls -lah
+WORKDIR /opt/atlassian/bitbucketci/agent/build
+ENTRYPOINT ["/bin/bash"]
