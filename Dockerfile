@@ -33,10 +33,6 @@ RUN echo "deb [signed-by=/etc/apt/keyrings/ddev.gpg] https://pkg.ddev.com/apt/ *
 RUN apt update
 RUN apt install -y ddev
 
-RUN groupadd -g 1000 ddev
-RUN useradd -u 1000 -g 1000 ddev
-RUN usermod -aG sudo ddev
-
 ##### INSTALL PHP STUFFS #####
 RUN  apt-get install --no-install-recommends -y php7.4 php7.4-fpm php7.4-gd php7.4-cli php-pear php-redis php7.4-mysql php7.4-curl php-memcached php-bcmath php7.4-zip php-mbstring php7.4-dev
 RUN php -- --disable-tls
