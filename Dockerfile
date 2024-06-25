@@ -44,8 +44,11 @@ RUN echo extension=timezonedb.so > /etc/php/7.4/mods-available/timezonedb.ini
 RUN ln -s /etc/php/7.4/mods-available/timezonedb.ini /etc/php/7.4/cli/conf.d/30-timezone.ini
 RUN ln -s /etc/php/7.4/mods-available/timezonedb.ini /etc/php/7.4/fpm/conf.d/30-timezone.ini
 
-# INSTALLING COMPOSER
+##### INSTALLING COMPOSER #####
 RUN wget --no-check-certificate https://getcomposer.org/download/1.10.27/composer.phar
 RUN chmod 0755 composer.phar && mv composer.phar /usr/local/bin/composer
 
 RUN apt-get -y clean && apt-get -y autoremove
+
+##### SWITCH TO NON-ROOT USER #####
+USER ddev
