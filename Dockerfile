@@ -23,7 +23,7 @@ RUN ln -s /etc/php/7.4/mods-available/timezonedb.ini /etc/php/7.4/cli/conf.d/30-
 RUN ln -s /etc/php/7.4/mods-available/timezonedb.ini /etc/php/7.4/fpm/conf.d/30-timezone.ini
 
 # INSTALLING COMPOSER
-RUN wget --no-check-certificate https://getcomposer.org/download/1.10.27/composer.phar
+RUN wget --no-check-certificate https://getcomposer.org/download/2.8.5/composer.phar
 
 RUN chmod 0755 composer.phar && mv composer.phar /usr/local/bin/composer
 
